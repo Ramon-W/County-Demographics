@@ -8,11 +8,9 @@ app = Flask(__name__) #__name__ = "__main__" if this is the file that was run.  
 def render_main():
     return render_template('home.html')
 
-def main():
+def get_state_options():
     with open('county_demographics.json') as demographics_data:
         counties = json.load(demographics_data)
-
-def get_state_options():
     listOfStates = []
     options = ""
     for county in counties:
