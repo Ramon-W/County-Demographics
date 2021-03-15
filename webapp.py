@@ -19,7 +19,7 @@ def get_state_options():
         if county["State"] not in listOfStates:
             state_dictionary.append(county["State"])
     for state in listOfStates:
-        options += '<option value ="' + state + '">' + state + '</option>'
+        options += Markup("<option value=\"" + state + "\">" + state + "</option>")
     return options
 
 if __name__=="__main__":
