@@ -19,7 +19,7 @@ def get_state_options():
     for state in listOfStates:
         s = state[0:2]
         options += Markup("<option value=\"" + s + "\">" + s + "</option>")
-    return options
+    return response = options
 
 if __name__=="__main__":
     app.run(debug=False)
