@@ -14,11 +14,13 @@ def main():
 
 def get_state_options():
     listOfStates = []
-    htmlcode = ""
+    options = ""
     for county in counties:
         if county["State"] not in listOfStates:
             state_dictionary.append(county["State"])
-    return 
+    for state in listOfStates:
+        options += '<option value ="' + state + '">' + state + '</option>'
+    return options
 
 if __name__=="__main__":
     app.run(debug=False)
