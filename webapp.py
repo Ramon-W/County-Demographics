@@ -31,7 +31,7 @@ def average_median_houseold_income():
         counties = json.load(demographics_data)
     counties_in_state = []
     for county in counties:
-        if county["State"] = state_selected:
+        if county["State"] == state_selected:
             counties_in_state.append(county["Income"]["Median Houseold Income"])
     sum = 0.0
     for x in counties_in_state:
