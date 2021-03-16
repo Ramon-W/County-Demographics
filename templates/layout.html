@@ -6,11 +6,13 @@
     <title>{% block title %}{% endblock %} - America Facts</title>
   </head>
   <body>
-    <label for="cars">Choose a State:</label>
-    <select name="states" id="states">
-      {{ response }}
-      <input type="submit" value="Get a fun fact!">
-    </select>
+    <form>
+      <label for="cars">Choose a State:</label>
+      <select name="states" id="states">
+        {{ response }}
+        <input type="submit" value="Get a fun fact!">
+      </select>
+    </form>
     {% block content %}{% endblock %}
   </body>
 </html>
