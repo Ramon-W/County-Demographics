@@ -8,6 +8,14 @@ app = Flask(__name__) #__name__ = "__main__" if this is the file that was run.  
 def render_main():
     return render_template('home.html', response = get_state_options())
 
+@app.route("/submit")
+def render_response():
+    return render_template('response.html', fact = function())
+    
+    
+    
+    
+    
 def get_state_options():
     with open('county_demographics.json') as demographics_data:
         counties = json.load(demographics_data)
