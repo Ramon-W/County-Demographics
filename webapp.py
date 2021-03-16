@@ -39,4 +39,4 @@ def average_median_houseold_income():
     return sum//len(counties_in_state)
 
 if __name__=="__main__":
-    app.run(debug=False)
+    app.run(debug=True)
