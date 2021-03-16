@@ -10,7 +10,7 @@ def render_main():
 
 @app.route("/submit")
 def render_response():
-    return render_template('response.html', fact = function())
+    return render_template('response.html', fact = cool)
     
     
     
