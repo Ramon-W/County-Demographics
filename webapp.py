@@ -11,7 +11,7 @@ def render_main():
 @app.route("/response")
 def render_response():
     state_selected = request.args['states']
-    return render_template('response.html', response = get_state_options(), fact = average_median_houseold_income())
+    return render_template('response.html', response = get_state_options(), fact = average_median_houseold_income(state_selected))
 
 def get_state_options():
     with open('county_demographics.json') as demographics_data:
@@ -26,12 +26,12 @@ def get_state_options():
         options += Markup("<option value=\"" + s + "\">" + s + "</option>")
     return options
 
-def average_median_houseold_income():
+def average_median_houseold_income(the_state):
     with open('county_demographics.json') as demographics_data:
         counties = json.load(demographics_data)
     counties_in_state = []
     for county in counties:
-        if county["State"] == state_selected:
+        if county["State"] == the_state:
             counties_in_state.append(county["Income"]["Median Houseold Income"])
     sum = 0.0
     for x in counties_in_state:
