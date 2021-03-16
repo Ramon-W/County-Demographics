@@ -13,6 +13,12 @@
         <input type="submit" value="Get a fun fact!">
       </select>
     </form>
+    <form action="/responseTwo">
+      <label for="county">Choose a County:</label>
+      <select name="county" id="county">
+        {{ responseTwo }}
+        <input type="submit" value="Get a fun fact!">
+    </form>
     {% block content %}{% endblock %}
   </body>
 </html>
