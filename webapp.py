@@ -10,7 +10,7 @@ def render_main():
 
 @app.route("/response")
 def render_response():
-    return render_template('response.html', fact = "cool")
+    return render_template('response.html', response = get_state_options(), fact = "cool")
     
     
     
