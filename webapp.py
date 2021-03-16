@@ -38,7 +38,7 @@ def average_median_houseold_income(the_state):
         sum += x
     average = int(sum//len(counties_in_state))
     average = str(average)
-    return "The average median houseold income of" + the_state + "is $" + average
+    return ("The average median houseold income of" + the_state + "is $" + average)
 
 if __name__=="__main__":
     app.run(debug=True)
