@@ -6,7 +6,7 @@ app = Flask(__name__) #__name__ = "__main__" if this is the file that was run.  
 
 @app.route("/")
 def render_main():
-    return render_template('home.html')
+    return render_template('home.html', response = get_state_options())
 
 def get_state_options():
     with open('county_demographics.json') as demographics_data:
@@ -19,7 +19,7 @@ def get_state_options():
     for state in listOfStates:
         s = state[0:2]
         options += Markup("<option value=\"" + s + "\">" + s + "</option>")
-    return response = options
+    return options
 
 if __name__=="__main__":
     app.run(debug=False)
