@@ -3,5 +3,10 @@
 {% block title %}American Demographics{% endblock %}
 
 {% block content %}
+  <form action="/responseTwo">
+    <label for = "county">Choose a County:</label>
+    <select name="county" id="county">
+      {{ responseTwo }}
+  </form>
 <p> {{ fact }} </p>
 {% endblock %}
