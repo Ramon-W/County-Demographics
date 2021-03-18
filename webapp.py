@@ -58,7 +58,11 @@ def average_median_houseold_income(the_state):
     returned_string = "The average median houseold income of " + the_state + " is $" + average
     return returned_string
 
-def get_high_school_education(
+def get_high_school_education(county_select):
+    with open('county_demographics.json') as demographics_data:
+        counties = json.load(demographics_data)
+    school_percent = "In " + county_select + ", " + county_select["Education"]["High School Education"] + "% have a high school education."
+    return school_percent
 
 if __name__=="__main__":
     app.run(debug=True)
