@@ -11,7 +11,7 @@ def render_main():
 @app.route("/response")
 def render_response():
     state_selected = request.args['states']
-    return render_template('response.html', response = get_state_options(), default = state_selected, responseTwo = get_county_options(state_selected), fact = "Hello")
+    return render_template('response.html', response = get_state_options(), default = state_selected, responseTwo = get_county_options(state_selected), statefact = "Hello")
 
 def get_state_options():
     with open('county_demographics.json') as demographics_data:
