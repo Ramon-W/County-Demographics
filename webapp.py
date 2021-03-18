@@ -16,6 +16,7 @@ def render_response():
 @app.route("/responseTwo")
 def render_responseTwo():
     county_selected = request.args['county']
+    state_selected = request.args['states']
     county_selected.replace("+", " ") 
     return render_template('response.html', reponse = get_state_options(), responseTwo = get_county_options(state_selected), countyfact = get_high_school_education(county_selected), statefact = "hello")
 
