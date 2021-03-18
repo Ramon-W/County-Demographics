@@ -11,7 +11,7 @@ def render_main():
 @app.route("/response")
 def render_response():
     state_selected = request.args['states']
-    return render_template('response.html', response = get_state_options(), responseTwo = get_county_options(state_selected), statefact = "Hello")
+    return render_template('response.html', response = get_state_options(), responseTwo = get_county_options(state_selected), statefact = average_median_houseold_income(state_selected))
 
 @app.route("/responseTwo")
 def render_responseTwo():
