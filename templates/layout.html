@@ -6,7 +6,7 @@
     <title>{% block title %}{% endblock %} - America Facts</title>
   </head>
   <body>
-    <form action="/response">
+    <form action="/response"><form action="/action_page.php" autocomplete="on">
       <label for="states">Choose a State:</label>
       <select name="states" id="states" value = {{ default }}>
         {{ response }}
