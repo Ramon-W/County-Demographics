@@ -11,7 +11,12 @@ def render_main():
 @app.route("/response")
 def render_response():
     state_selected = request.args['states']
-    return render_template('response.html', response = get_state_options(), default = state_selected, responseTwo = get_county_options(state_selected), statefact = "Hello")
+    return render_template('response.html', response = get_state_options(), responseTwo = get_county_options(state_selected), statefact = "Hello")
+
+@app.route("/responseTwo")
+def render_responseTwo():
+    county_selected = request.args['county']
+    return render_template('response.html', reponse = get_state_options(), responseTwo = get_county_options(state_selected), countyfact = get_high_school_education(county_selected), statefact = "Hello")
 
 def get_state_options():
     with open('county_demographics.json') as demographics_data:
@@ -52,6 +57,8 @@ def average_median_houseold_income(the_state):
     average = str(average)
     returned_string = "The average median houseold income of " + the_state + " is $" + average
     return returned_string
+
+def get_high_school_education(
 
 if __name__=="__main__":
     app.run(debug=True)
