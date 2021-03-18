@@ -8,7 +8,7 @@
   <body>
     <form action="/response">
       <label for="states">Choose a State:</label>
-      <select name="states" id="states">
+      <select name="states" id="states" value = {{ default }}>
         {{ response }}
       <input type="submit" value="Get a fun fact!">
     </form>
