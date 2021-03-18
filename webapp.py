@@ -17,7 +17,7 @@ def render_response():
 def render_responseTwo():
     county_selected = request.args['county']
     county_selected.replace("+", " ") 
-    return render_template('response.html', reponse = get_state_options(), responseTwo = get_county_options(state_selected), countyfact = get_high_school_education(county_selected))
+    return render_template('response.html', reponse = get_state_options(), responseTwo = get_county_options(state_selected), countyfact = get_high_school_education(county_selected), statefact = "hello")
 
 def get_state_options():
     with open('county_demographics.json') as demographics_data:
@@ -62,7 +62,9 @@ def average_median_houseold_income(the_state):
 def get_high_school_education(county_select):
     with open('county_demographics.json') as demographics_data:
         counties = json.load(demographics_data)
-    school_percent = "In " + county_select + ", " + county_select["Education"]["High School Education"] + "% have a high school education."
+    for county in counties:
+        if county["County"] == county_select:
+            school_percent = "In " + county_select + ", " + county["Education"]["High School Education"] + "% have a high school education."
     return school_percent
 
 if __name__=="__main__":
