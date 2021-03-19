@@ -40,6 +40,20 @@ def get_county_options():
 def get_fact(the_data, selected_state):
     with open('county_demographics.json') as demographics_data:
         counties = json.load(demographics_data)
+    counties_in_state = []
+    returned_string = ""
+    for county in counties:
+        if county["State"] == the_state:
+            if the_data == 'Income':
+                counties_in_state.append(county["Income"]["Per Capita Income"])
+    sum = 0.0
+    for x in counties_in_state:
+        sum += x
+    average = int(sum//len(counties_in_state))
+    average = str(average)
+    if the_data == 'Income':
+        returned_string = "The average per capita income of " + the_state + " is $" + average ", and "
+    
     county_name = counties[0]["County"]
     county_data = 0
     if the_data == 'Income':
@@ -48,7 +62,7 @@ def get_fact(the_data, selected_state):
             if county["State"] == selected_state and county["Income"]["Per Capita Income"] > county_data:
                 county_data = county["Income"]["Per Capita Income"]
                 county_name = county["County"]
-        return county_name + " has the highest per capita income of " + selected_state + ": $" + str(county_data) 
+        return returned_string + county_name + " has the highest per capita income of " + selected_state + ": $" + str(county_data) 
     else:
         return ""
 
