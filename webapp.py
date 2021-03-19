@@ -12,7 +12,7 @@ def render_main():
 def render_response():
     state_selected = request.args['states']
     county_selected = request.args['county']
-    if state_selected == "" or county_selected == ""
+    if state_selected == "" or county_selected == "":
         return render_template('home.html', response = get_state_options(), responseTwo = get_county_options(), statefact = "", countyfact = "")
     county_selected.replace("+", " ") 
     return render_template('home.html', response = get_state_options(), responseTwo = get_county_options(state_selected), statefact = average_median_houseold_income(state_selected), countyfact = get_high_education(county_selected))
