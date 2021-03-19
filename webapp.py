@@ -6,7 +6,7 @@ app = Flask(__name__) #__name__ = "__main__" if this is the file that was run.  
 
 @app.route("/")
 def render_main():
-    return render_template('home.html', response = get_state_options())
+    return render_template('home.html', response = get_state_options(), responseTwo = get_county_options)
 
 @app.route("/response")
 def render_response():
@@ -32,16 +32,12 @@ def get_state_options():
         options += Markup("<option value=\"" + s + "\">" + s + "</option>")
     return options
 
-def get_county_options(state_select):
+def get_county_options():
     with open('county_demographics.json') as demographics_data:
         counties = json.load(demographics_data)
-    listOfCounties = []
     options = ""
     for county in counties:
-        if county["State"] == state_select:
-            listOfCounties.append(county["County"])
-    for county in listOfCounties:
-        options += Markup("<option value=\"" + county + "\">" + county + "</option>")
+        options += Markup("<option value=\"" + county["County"] + "\">" + county["County"] + "</option>")
     return options
 
 def average_median_houseold_income(the_state):
