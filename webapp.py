@@ -52,7 +52,7 @@ def get_fact(the_data, selected_state):
     average = int(sum//len(counties_in_state))
     average = str(average)
     if the_data == 'Income':
-        returned_string = "The average per capita income of " + the_state + " is $" + average ", and "
+        returned_string = "The average per capita income of " + the_state + " is $" + average + ", and "
     
     county_name = counties[0]["County"]
     county_data = 0
