@@ -14,7 +14,7 @@ def render_response():
     county_selected = request.args['county']
     county_selected.replace("+", " ") 
     data_selected = request.args['data']
-    return render_template('home.html', response = get_state_options(), responseTwo = get_county_options(), statefact = average_median_houseold_income(state_selected), countyfact = get_high_school_education(county_selected), data = get_fact(data_selected))
+    return render_template('home.html', response = get_state_options(), responseTwo = get_county_options(), statefact = average_median_houseold_income(state_selected), countyfact = get_high_school_education(county_selected), data = get_fact(data_selected, state_selected))
 
 def get_state_options():
     with open('county_demographics.json') as demographics_data:
@@ -37,7 +37,7 @@ def get_county_options():
         options += Markup("<option value=\"" + county["County"] + "\">" + county["County"] + "</option>")
     return options
 
-def get_fact(the_data):
+def get_fact(the_data, selected_state):
     with open('county_demographics.json') as demographics_data:
         counties = json.load(demographics_data)
     county_name = counties[0]["County"]
@@ -45,7 +45,7 @@ def get_fact(the_data):
     if the_data == 'Income':
         county_data = counties[0]["Income"]["Per Capita Income"]
         for county in counties:
-            if county["Income"]["Per Capita Income"] > county_data:
+            if county["State"] == selected_state and county["Income"]["Per Capita Income"] > county_data:
                 county_data = county["Income"]["Per Capita Income"]
                 county_name = county["County"]
         return county_name + " has the highest per capita income of the state: $" + str(county_data) 
