@@ -48,7 +48,7 @@ def get_fact(the_data, selected_state):
             if county["State"] == selected_state and county["Income"]["Per Capita Income"] > county_data:
                 county_data = county["Income"]["Per Capita Income"]
                 county_name = county["County"]
-        return county_name + " has the highest per capita income of the state: $" + str(county_data) 
+        return county_name + " has the highest per capita income of " + selected_state + ": $" + str(county_data) 
     else:
         return ""
 
