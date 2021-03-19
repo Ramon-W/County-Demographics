@@ -58,7 +58,7 @@ def get_high_school_education(county_select):
         counties = json.load(demographics_data)
     for county in counties:
         if county["County"] == county_select:
-            school_percent = "In " + county_select + ", " + county["Education"]["High School Education"] + "% have a high school education."
+            school_percent = "In " + county_select + ", " + county["Education"]["High School or Higher"] + "% have a high school education."
     return school_percent
 
 if __name__=="__main__":
