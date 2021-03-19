@@ -56,6 +56,7 @@ def average_median_houseold_income(the_state):
 def get_high_school_education(county_select):
     with open('county_demographics.json') as demographics_data:
         counties = json.load(demographics_data)
+    school_percent = ""
     for county in counties:
         if county["County"] == county_select:
             school_percent = "In " + county_select + ", " + county["Education"]["High School or Higher"] + "% have at least a high school education."
