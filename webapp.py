@@ -43,7 +43,7 @@ def get_fact(the_data, selected_state):
     counties_in_state = []
     returned_string = ""
     for county in counties:
-        if county["State"] == the_state:
+        if county["State"] == selected_state:
             if the_data == 'Income':
                 counties_in_state.append(county["Income"]["Per Capita Income"])
     sum = 0.0
