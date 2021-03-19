@@ -12,10 +12,9 @@ def render_main():
 def render_response():
     state_selected = request.args['states']
     county_selected = request.args['county']
-    if state_selected == "" or county_selected == "":
-        return render_template('home.html', response = get_state_options(), responseTwo = get_county_options(), statefact = "", countyfact = "")
     county_selected.replace("+", " ") 
-    return render_template('home.html', response = get_state_options(), responseTwo = get_county_options(), statefact = average_median_houseold_income(state_selected), countyfact = get_high_school_education(county_selected))
+    data_selected = request.args['data']
+    return render_template('home.html', response = get_state_options(), responseTwo = get_county_options(), statefact = average_median_houseold_income(state_selected), countyfact = get_high_school_education(county_selected), data = get_fact(data_selected))
 
 def get_state_options():
     with open('county_demographics.json') as demographics_data:
@@ -37,6 +36,25 @@ def get_county_options():
     for county in counties:
         options += Markup("<option value=\"" + county["County"] + "\">" + county["County"] + "</option>")
     return options
+
+def get_data(the_data):
+    with open('county_demographics.json') as demographics_data:
+        counties = json.load(demographics_data)
+    county_name = counties[0]["County"]
+    county_data = 0
+    if the_data == 'Income':
+        county_data = counties[0]["Income"]["Per Capita Income"]
+        for county in counties:
+            if county["Income"]["Per Capita Income"] > county_data:
+                county_data = county["Income"]["Per Capita Income"]
+                county_name = county["County"]
+        return county_name + "has the highest per capita income of the state: " + str(county_data) 
+    elif the_data == 'Education':
+    elif the_data == 'Homeownership':
+    elif the_data == 'Diversity':
+    elif the_data == 'Employment':
+    else:
+        return ""
 
 def average_median_houseold_income(the_state):
     with open('county_demographics.json') as demographics_data:
