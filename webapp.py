@@ -49,10 +49,6 @@ def get_fact(the_data):
                 county_data = county["Income"]["Per Capita Income"]
                 county_name = county["County"]
         return county_name + "has the highest per capita income of the state: " + str(county_data) 
-    elif the_data == 'Education':
-    elif the_data == 'Homeownership':
-    elif the_data == 'Diversity':
-    elif the_data == 'Employment':
     else:
         return ""
 
