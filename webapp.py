@@ -15,7 +15,7 @@ def render_response():
     if state_selected == "" or county_selected == "":
         return render_template('home.html', response = get_state_options(), responseTwo = get_county_options(), statefact = "", countyfact = "")
     county_selected.replace("+", " ") 
-    return render_template('home.html', response = get_state_options(), responseTwo = get_county_options(), statefact = average_median_houseold_income(state_selected), countyfact = get_high_education(county_selected))
+    return render_template('home.html', response = get_state_options(), responseTwo = get_county_options(), statefact = average_median_houseold_income(state_selected), countyfact = get_high_school_education(county_selected))
 
 def get_state_options():
     with open('county_demographics.json') as demographics_data:
