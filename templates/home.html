@@ -5,10 +5,6 @@
   </head>
   <body>
     <h1>American Demographics</h1>
-    <br>
-    <p>{{ statefact }}</p>
-    <p> {{ countyfact }} </p>
-    <br>
     <form action="/response">
       <label for="states">Choose a State:</label>
       <select name="states" id="states">
@@ -21,5 +17,7 @@
         {{ responseTwo }}
       <input type="submit" value="Get another fun fact!">
     </form>
+    <p>{{ statefact }}</p>
+    <p> {{ countyfact }} </p>
   </body>
 </html>
