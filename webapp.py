@@ -59,8 +59,9 @@ def get_high_school_education(county_select):
     school_percent = ""
     for county in counties:
         if county["County"] == county_select:
-            school_percent = "In " + county_select + ", " + county["Education"]["High School or Higher"] + "% have at least a high school education."
-    return "Sholdwdjowjd"
+            percent = str(county["Education"]["High School or Higher"])
+            school_percent = "In " + county_select + ", " + percent + "% have at least a high school education."
+    return school_percent
 
 if __name__=="__main__":
     app.run(debug=True)
