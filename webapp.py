@@ -37,7 +37,7 @@ def get_county_options():
         options += Markup("<option value=\"" + county["County"] + "\">" + county["County"] + "</option>")
     return options
 
-def get_data(the_data):
+def get_fact(the_data):
     with open('county_demographics.json') as demographics_data:
         counties = json.load(demographics_data)
     county_name = counties[0]["County"]
