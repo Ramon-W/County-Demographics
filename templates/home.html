@@ -4,6 +4,11 @@
     <title>American Demographics</title>
   </head>
   <body>
-    
+    <form action="/response">
+      <label for="states">Choose a State:</label>
+      <select name="states" id="states">
+        {{ response }}
+      <input type="submit" value="Get a fun fact!">
+    </form>
   </body>
 </html>
