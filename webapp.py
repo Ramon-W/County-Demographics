@@ -11,12 +11,12 @@ def render_main():
 @app.route("/response")
 def render_response():
     state_selected = request.args['states']
-    county_selected = request.args['county']
-    county_selected.replace("+", " ") 
-    return render_template('home.html', response = get_state_options(), responseTwo = get_county_options(state_selected), statefact = average_median_houseold_income(state_selected), countyfact = get_high_school_education(county_selected))
+    return render_template('home.html', response = get_state_options(), responseTwo = get_county_options(state_selected), statefact = average_median_houseold_income(state_selected))
 
 @app.route("/responseTwo")
 def render_responseTwo():
+    county_selected = request.args['county']
+    county_selected.replace("+", " ") 
     return render_template('response.html')
 
 def get_state_options():
