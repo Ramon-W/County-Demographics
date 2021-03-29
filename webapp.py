@@ -46,6 +46,8 @@ def get_fact(the_data, selected_state):
         if county["State"] == selected_state:
             if the_data == 'Income':
                 counties_in_state.append(county["Income"]["Per Capita Income"])
+            elif the_data == 'Education':
+                counties_in_state.append(county["Education"]["Bachelor's Degree or Higher"])
     sum = 0.0
     for x in counties_in_state:
         sum += x
@@ -53,16 +55,23 @@ def get_fact(the_data, selected_state):
     average = str(average)
     if the_data == 'Income':
         returned_string = "The average per capita income of " + selected_state + " is $" + average + ", and "
+    elif the_data == 'Education':
+        returned_string = "The average percentage of people with Bachelor's Degree or Higher in " + selected_state + " is %" + average + ", and "
     
     county_name = counties[0]["County"]
     county_data = 0
     if the_data == 'Income':
-        county_data = counties[0]["Income"]["Per Capita Income"]
         for county in counties:
             if county["State"] == selected_state and county["Income"]["Per Capita Income"] > county_data:
                 county_data = county["Income"]["Per Capita Income"]
                 county_name = county["County"]
         return returned_string + county_name + " has the highest per capita income of " + selected_state + ": $" + str(county_data) 
+    elif the_data == 'Education':
+        for county in counties:
+            if county["State"] == selected_state and county["Education"]["Bachelor's Degree or Higher"] > county_data:
+                county_data = county["Education"]["Bachelor's Degree or Higher"]
+                county_name = county["County"]
+        return returned_string + county_name + " has the highest percentage people with a Bachelor's Degree or Higher in " + selected_state + ": %" + str(county_data)
     else:
         return ""
 
