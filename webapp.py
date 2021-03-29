@@ -51,7 +51,7 @@ def get_fact(the_data, selected_state):
             elif the_data == 'Homeownership':
                 counties_in_state.append(county["Housing"]["Homeownership Rate"])
             elif the_data == 'Employment':
-                counties_in_state.appened(county["Employment"]["Private Non-farm Employment Percent Change"])
+                counties_in_state.append(county["Employment"]["Private Non-farm Employment Percent Change"])
     sum = 0.0
     for x in counties_in_state:
         sum += x
