@@ -11,12 +11,12 @@ def render_main():
 @app.route("/response")
 def render_response():
     with open('county_demographics.json') as demographics_data:
-        counties = json.load(demographics_data)
+        count = json.load(demographics_data)
     state_selected = request.args['states']
     county_selected = request.args['county']
     county_selected.replace("+", " ") 
     data_selected = request.args['data']
-    return render_template('home.html', response = get_state_options(counties), responseTwo = get_county_options(counties), statefact = average_median_houseold_income(state_selected, counties), countyfact = get_high_school_education(county_selected, counties), data = get_fact(data_selected, state_selected, counties), unrelated = "Unrelated Facts:")
+    return render_template('home.html', response = get_state_options(count), responseTwo = get_county_options(count), statefact = average_median_houseold_income(state_selected, count), countyfact = get_high_school_education(county_selected, count), data = get_fact(data_selected, state_selected, count), unrelated = "Unrelated Facts:")
 
 def get_state_options(counties):
     listOfStates = []
