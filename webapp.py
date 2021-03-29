@@ -41,6 +41,7 @@ def get_fact(the_data, selected_state):
     with open('county_demographics.json') as demographics_data:
         counties = json.load(demographics_data)
     counties_in_state = []
+    diversity = 0.0
     returned_string = ""
     for county in counties:
         if county["State"] == selected_state:
@@ -52,6 +53,9 @@ def get_fact(the_data, selected_state):
                 counties_in_state.append(county["Housing"]["Homeownership Rate"])
             elif the_data == 'Employment':
                 counties_in_state.append(county["Employment"]["Private Non-farm Employment Percent Change"])
+            elif the_data == 'Diversity':
+                diversity = 100.0 - county["Ethnicities"]["White Alone, not Hispanic or Latino"]
+                counties_in_state.append(diversity)
     sum = 0.0
     for x in counties_in_state:
         sum += x
@@ -65,7 +69,9 @@ def get_fact(the_data, selected_state):
         returned_string = "The homeownership rate of " + selected_state + " is " + average + "% , and "
     elif the_data == 'Employment':
         returned_string = "The average percentage increase of private non-farm employment in " + selected_state + " is " + average + "%, and "
-
+    elif the_data == 'Diversity':
+        returned_string = "The average percentage of people who are non-white (but including Hispanics and Latinos) in " + selected_state + " is " + average + "%, and "
+    
     county_name = counties[0]["County"]
     county_data = 0
     if the_data == 'Income':
@@ -92,6 +98,13 @@ def get_fact(the_data, selected_state):
                 county_data = county["Employment"]["Private Non-farm Employment Percent Change"]
                 county_name = county["County"]
         return returned_string + county_name + " has the highest employment percentage increase in private non-farm businesses in " + selected_state + ": " + str(county_data) + "%"
+    elif the_data == 'Diversity':
+        county_data = 100.0
+        for county in counties:
+            if county["State"] == selected_state and county["Ethnicities"]["White Alone, not Hispanic or Latino"] < county_data:
+                county_data = 100.0 - county["Ethnicities"]["White Alone, not Hispanic or Latino"]
+                county_name = county["County"]
+        return returned_string + county_name + " has the highest non-white (but including Hispanics and Latinos) population percentage in " + selected_state + ": " + str(county_data) + "%"
     else:
         return ""
 
