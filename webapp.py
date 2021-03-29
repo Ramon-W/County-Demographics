@@ -10,15 +10,15 @@ def render_main():
 
 @app.route("/response")
 def render_response():
-    with open('county_demographics.json') as demographics_data:
-        count = json.load(demographics_data)
     state_selected = request.args['states']
     county_selected = request.args['county']
     county_selected.replace("+", " ") 
     data_selected = request.args['data']
-    return render_template('home.html', response = get_state_options(count), responseTwo = get_county_options(count), statefact = average_median_houseold_income(state_selected, count), countyfact = get_high_school_education(county_selected, count), data = get_fact(data_selected, state_selected, count), unrelated = "Unrelated Facts:")
+    return render_template('home.html', response = get_state_options(), responseTwo = get_county_options(), statefact = average_median_houseold_income(state_selected), countyfact = get_high_school_education(county_selected), data = get_fact(data_selected, state_selected), unrelated = "Unrelated Facts:")
 
 def get_state_options(counties):
+    with open('county_demographics.json') as demographics_data:
+        counties = json.load(demographics_data)
     listOfStates = []
     options = ""
     for county in counties:
@@ -30,12 +30,16 @@ def get_state_options(counties):
     return options
 
 def get_county_options(counties):
+    with open('county_demographics.json') as demographics_data:
+        counties = json.load(demographics_data)
     options = ""
     for county in counties:
         options += Markup("<option value=\"" + county["County"] + "\">" + county["County"] + "</option>")
     return options
 
 def get_fact(the_data, selected_state, counties):
+    with open('county_demographics.json') as demographics_data:
+        counties = json.load(demographics_data)
     counties_in_state = []
     returned_string = ""
     for county in counties:
@@ -63,6 +67,8 @@ def get_fact(the_data, selected_state, counties):
         return ""
 
 def average_median_houseold_income(the_state, counties):
+    with open('county_demographics.json') as demographics_data:
+        counties = json.load(demographics_data)
     counties_in_state = []
     for county in counties:
         if county["State"] == the_state:
@@ -76,6 +82,8 @@ def average_median_houseold_income(the_state, counties):
     return returned_string
 
 def get_high_school_education(county_select, counties):
+    with open('county_demographics.json') as demographics_data:
+        counties = json.load(demographics_data)
     school_percent = ""
     for county in counties:
         if county["County"] == county_select:
