@@ -16,7 +16,7 @@ def render_response():
     data_selected = request.args['data']
     return render_template('home.html', response = get_state_options(), responseTwo = get_county_options(), statefact = average_median_houseold_income(state_selected), countyfact = get_high_school_education(county_selected), data = get_fact(data_selected, state_selected), unrelated = "Unrelated Facts:")
 
-def get_state_options(counties):
+def get_state_options():
     with open('county_demographics.json') as demographics_data:
         counties = json.load(demographics_data)
     listOfStates = []
@@ -29,7 +29,7 @@ def get_state_options(counties):
         options += Markup("<option value=\"" + s + "\">" + s + "</option>")
     return options
 
-def get_county_options(counties):
+def get_county_options():
     with open('county_demographics.json') as demographics_data:
         counties = json.load(demographics_data)
     options = ""
@@ -37,7 +37,7 @@ def get_county_options(counties):
         options += Markup("<option value=\"" + county["County"] + "\">" + county["County"] + "</option>")
     return options
 
-def get_fact(the_data, selected_state, counties):
+def get_fact(the_data, selected_state):
     with open('county_demographics.json') as demographics_data:
         counties = json.load(demographics_data)
     counties_in_state = []
@@ -66,7 +66,7 @@ def get_fact(the_data, selected_state, counties):
     else:
         return ""
 
-def average_median_houseold_income(the_state, counties):
+def average_median_houseold_income(the_state):
     with open('county_demographics.json') as demographics_data:
         counties = json.load(demographics_data)
     counties_in_state = []
@@ -81,7 +81,7 @@ def average_median_houseold_income(the_state, counties):
     returned_string = "The average median houseold income of " + the_state + " is $" + average
     return returned_string
 
-def get_high_school_education(county_select, counties):
+def get_high_school_education(county_select):
     with open('county_demographics.json') as demographics_data:
         counties = json.load(demographics_data)
     school_percent = ""
