@@ -56,7 +56,7 @@ def get_fact(the_data, selected_state):
     if the_data == 'Income':
         returned_string = "The average per capita income of " + selected_state + " is $" + average + ", and "
     elif the_data == 'Education':
-        returned_string = "The average percentage of people with Bachelor's Degree or Higher in " + selected_state + " is %" + average + ", and "
+        returned_string = "The average percentage of people with Bachelor's Degree or Higher in " + selected_state + " is " + average + "% , and "
     
     county_name = counties[0]["County"]
     county_data = 0
@@ -71,7 +71,7 @@ def get_fact(the_data, selected_state):
             if county["State"] == selected_state and county["Education"]["Bachelor's Degree or Higher"] > county_data:
                 county_data = county["Education"]["Bachelor's Degree or Higher"]
                 county_name = county["County"]
-        return returned_string + county_name + " has the highest percentage people with a Bachelor's Degree or Higher in " + selected_state + ": %" + str(county_data)
+        return returned_string + county_name + " has the highest percentage of people with a Bachelor's Degree or Higher in " + selected_state + ": " + str(county_data) + "%"
     else:
         return ""
 
