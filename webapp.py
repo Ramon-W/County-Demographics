@@ -49,7 +49,7 @@ def get_fact(the_data, selected_state):
             elif the_data == 'Education':
                 counties_in_state.append(county["Education"]["Bachelor's Degree or Higher"])
             elif the_data == 'Homeownership':
-                counties_in_state.append(county["Housing"]["Homeownership Rate"]
+                counties_in_state.append(county["Housing"]["Homeownership Rate"])
     sum = 0.0
     for x in counties_in_state:
         sum += x
