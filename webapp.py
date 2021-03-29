@@ -14,7 +14,7 @@ def render_response():
     county_selected = request.args['county']
     county_selected.replace("+", " ") 
     data_selected = request.args['data']
-    return render_template('home.html', response = get_state_options(), responseTwo = get_county_options(), statefact = average_median_houseold_income(state_selected), countyfact = get_high_school_education(county_selected), data = get_fact(data_selected, state_selected))
+    return render_template('home.html', response = get_state_options(), responseTwo = get_county_options(), statefact = average_median_houseold_income(state_selected), countyfact = get_high_school_education(county_selected), data = get_fact(data_selected, state_selected), unrelated = "Unrelated Facts:")
 
 def get_state_options():
     with open('county_demographics.json') as demographics_data:
