@@ -102,8 +102,9 @@ def get_fact(the_data, selected_state):
         county_data = 100.0
         for county in counties:
             if county["State"] == selected_state and county["Ethnicities"]["White Alone, not Hispanic or Latino"] < county_data:
-                county_data = 100.0 - county["Ethnicities"]["White Alone, not Hispanic or Latino"]
+                county_data = county["Ethnicities"]["White Alone, not Hispanic or Latino"]
                 county_name = county["County"]
+        county_data = 100.0 - county_data
         return returned_string + county_name + " has the highest non-white (but including Hispanics and Latinos) population percentage in " + selected_state + ": " + str(county_data) + "%"
     else:
         return ""
